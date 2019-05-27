@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+  webapp: &webapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wa01
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    links:
+      - rabbit:rabbit
+      - db
+    depends_on:
+      - rabbit
+      - db
+      # - elasticsearch
+
+  db:
+      image: postgres:9.4
+      container_name: db01
+      environment:
+        - 'POSTGRES_DB: postgres'
+        - 'POSTGRES_USER: postgres'
+        - 'POSTGRES_PASS: postgres'
+      volumes:
+        - ./dbstart:/docker-entrypoint-initdb.d/dbstart
+        - my_dbdata:/var/lib/postgresql/data
+      ports:
+      - 5432:5432
+
+  # elasticsearch:
+  #   image: elasticsearch:2.4.0
+  #   command: elasticsearch -Des.network.host=0.0.0.0
+  #   ports:
+  #     - "9200:9200"
+  #     - "9300:9300"
+
+  rabbit:
+    image: "rabbitmq:alpine"
+    container_name: rb01
+
+  celery:
+    build: .
+    volumes:
+      - .:/api
+    container_name: cl01
+    environment:
+        - DJANGO_SETTINGS_MODULE=api.settings.production
+    command: celery -A api worker -l info
+    links:
+      - rabbit:rabbit
+      - db
+    depends_on: 
+      - rabbit
+      - db
+
+  celery_worker:
+    <<: *webapp
+    container_name: cl02
+    command: celery -A api worker -l info
+    ports: []
+    links:
+      - rabbit:rabbit
+      - db
+    depends_on: 
+      - rabbit
+      - db
+
+
+volumes:
+  rabbit:
+  my_dbdata:
+
