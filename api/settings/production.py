@@ -3,7 +3,7 @@ import os
 
 print("production ---------")
 
-ALLOWED_HOSTS = ['0.0.0.0', '18.224.94.174']
+ALLOWED_HOSTS = ['0.0.0.0', '18.224.94.174', '3.18.105.6']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', True)
