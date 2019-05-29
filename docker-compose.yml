@@ -58,17 +58,17 @@ services:
       - rabbit
       - db
 
-  celery_worker:
-    <<: *webapp
-    container_name: cl02
-    command: celery -A api worker -l info
-    ports: []
-    links:
-      - rabbit:rabbit
-      - db
-    depends_on: 
-      - rabbit
-      - db
+  # celery_worker:
+  #   <<: *webapp
+  #   container_name: cl02
+  #   command: celery -A api worker -l info
+  #   ports: []
+  #   links:
+  #     - rabbit:rabbit
+  #     - db
+  #   depends_on: 
+  #     - rabbit
+  #     - db
 
 
 volumes:
