@@ -18,7 +18,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Article
-		fields = ('video_uuid','title','site_url','image_url', 'transcripts')
+		fields = ('video_uuid','title', 'site_url','image_url', 'duration', 'rating', 'source', 'transcripts')
 
 	def create(self, validated_data):
 		transcription_data = validated_data.pop('transcripts')

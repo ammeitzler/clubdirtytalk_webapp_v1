@@ -9,6 +9,9 @@ class Article(models.Model):
 	title = models.CharField(max_length=255, null=True, blank=True)
 	site_url =  models.URLField(default=False)
 	image_url =  models.URLField(default=False)
+	duration = models.TimeField(default=False, null=True)
+	rating = models.IntegerField(default=False)
+	source = models.CharField(max_length=255, null=True, blank=True)
 
 class Transcription(models.Model):
 	article = models.ForeignKey(Article, related_name='transcripts', on_delete=models.CASCADE)
