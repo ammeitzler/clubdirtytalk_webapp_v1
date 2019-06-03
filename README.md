@@ -7,3 +7,5 @@ Docker/Django REST/PostGreSQL/RabbitMQ/Celery API
 4. docker-compose up
 
 ## Endpoints :
+1. /article/video_uuid/ DELETE
+2. /article/call me daddy/ GET
