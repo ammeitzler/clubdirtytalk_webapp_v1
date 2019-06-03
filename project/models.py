@@ -36,8 +36,8 @@ class Transcription(models.Model):
 	class Meta:
 		unique_together = ('article', 'video_uuid')
 
-	def __str__(self):
-		return '%d: %s' % (self.video_uuid)
+	# def __str__(self):
+	# 	return '%d: %s' % (self.video_uuid)
 
 
 class Album(models.Model):

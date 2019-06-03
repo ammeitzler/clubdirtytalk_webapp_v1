@@ -21,7 +21,7 @@ from project.views import *
 
 
 router = routers.DefaultRouter()
-router.register(r'groups', views.GroupViewSet)
+# router.register(r'groups', views.GroupViewSet)
 router.register(r'article', views.ArticleViewSet, base_name='article')
 router.register(r'album', views.AlbumViewSet, base_name='album')
 
@@ -29,7 +29,11 @@ router.register(r'album', views.AlbumViewSet, base_name='album')
 urlpatterns = [
     url('', include(router.urls)),
     url('album/', views.AlbumViewSet.as_view({'get': 'list'})),
-    url('article/', views.ArticleViewSet.as_view({'get': 'list'})),
+    url(r'^artcle/(?P<search_text>[\w|\W]+)/$', views.ArticleViewSet.as_view({
+    'get': 'retrieve',
+    'post': 'create',
+    'delete': 'destroy',
+}), name='article-detail'),
     url('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 

@@ -14,18 +14,21 @@ class TranscriptionSerializer(serializers.ModelSerializer):
         fields = ('video_uuid', '_0seconds_55seconds', '_55seconds_110seconds', '_110seconds_165seconds','_165seconds_220seconds','_220seconds_275seconds', '_275seconds_330seconds','_330seconds_385seconds','_385seconds_440seconds','_440seconds_495seconds','_495seconds_550seconds','_550seconds_605seconds','_605seconds_660seconds','_660seconds_715seconds','_715seconds_770seconds','_770seconds_825seconds','_825seconds_880seconds','_880seconds_935seconds')
 
 class ArticleSerializer(serializers.ModelSerializer):
-	transcripts = TranscriptionSerializer(many=True)
+    transcripts = TranscriptionSerializer(many=True)
+    class Meta:
+        model = Article
+        fields = ('video_uuid','title', 'site_url','image_url', 'duration', 'rating', 'source', 'transcripts')
+        lookup_field = 'search_text'
+        extra_kwargs = {
+            'url': {'lookup_field': 'search_text'},
+        }
 
-	class Meta:
-		model = Article
-		fields = ('video_uuid','title', 'site_url','image_url', 'duration', 'rating', 'source', 'transcripts')
-
-	def create(self, validated_data):
-		transcription_data = validated_data.pop('transcripts')
-		article = Article.objects.create(**validated_data)
-		for transcript_data in transcription_data:
-			Transcription.objects.create(article=article, **transcript_data)
-		return article
+    def create(self, validated_data):
+        transcription_data = validated_data.pop('transcripts')
+        article = Article.objects.create(**validated_data)
+        for transcript_data in transcription_data:
+            Transcription.objects.create(article=article, **transcript_data)
+        return article
 
 
 
