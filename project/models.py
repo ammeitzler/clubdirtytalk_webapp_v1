@@ -12,6 +12,8 @@ class Article(models.Model):
 	duration = models.TimeField(default=False, null=True)
 	rating = models.IntegerField(default=False)
 	source = models.CharField(max_length=255, null=True, blank=True)
+	class Meta:
+		unique_together = ('video_uuid','site_url')
 
 class Transcription(models.Model):
 	article = models.ForeignKey(Article, related_name='transcripts', on_delete=models.CASCADE)
