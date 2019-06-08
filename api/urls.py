@@ -15,6 +15,8 @@ Including another URLconf
 """
 # from django.urls import include, path
 from django.conf.urls import url, include
+import oauth2_provider.views as oauth2_views
+from django.conf import settings
 from rest_framework import routers
 from project import views
 from project.views import *

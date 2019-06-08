@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.http import HttpResponse
@@ -8,18 +8,20 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from oauth2_provider.views.generic import ProtectedResourceView
 
 from .tasks import *
 
-class GroupViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+# class GroupViewSet(viewsets.ModelViewSet):
+#     queryset = Group.objects.all()
+#     serializer_class = GroupSerializer
     
-    def list(self, request):
-        print("here abc")
-        x = create_user_task.delay()
-        print(x)
-        return Response("hi")
+#     def list(self, request):
+#         print("here abc")
+#         x = create_user_task.delay()
+#         print(x)
+#         return Response("hi")
+
 
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
@@ -45,8 +47,10 @@ class ArticleViewSet(viewsets.ModelViewSet):
         for i in range(task_res_length):
             print(task_res[i]["title"])
             title = task_res[i]["title"]
-            url = task_res[i]["site_url"]
-            j_res.append({"title":title,"url":url})
+            site_url = task_res[i]["site_url"]
+            image_url = task_res[i]["image_url"]
+            rating = task_res[i]["rating"]
+            j_res.append({"title":title,"url":site_url, "image":image_url, "rating":rating})
         return JsonResponse(j_res, safe=False)
 
     def destroy(self, request, pk=None):
