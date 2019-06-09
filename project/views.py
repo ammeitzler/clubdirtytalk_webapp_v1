@@ -50,7 +50,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
             site_url = task_res[i]["site_url"]
             image_url = task_res[i]["image_url"]
             rating = task_res[i]["rating"]
-            j_res.append({"title":title,"url":site_url, "image":image_url, "rating":rating})
+            j_res.append({"title":title,"site_url":site_url, "image_url":image_url, "rating":rating})
         return JsonResponse(j_res, safe=False)
 
     def destroy(self, request, pk=None):

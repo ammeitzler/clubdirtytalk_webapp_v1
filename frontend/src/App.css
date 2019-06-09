@@ -12,10 +12,11 @@ html, body {
 }
 
 #twothird {
-  width: 66%;
+  text-align: center;
+  width: 68%;
   display: inline-block;
   border-right: 2px solid black;
-  padding: 0 20px;
+  padding: 10px 20px 220px;
   overflow-y: scroll;
   height: 100%;
   min-height: 100%;
@@ -24,7 +25,7 @@ html, body {
   -moz-box-sizing: border-box;
 }
 #onethird {
-  width: 30%;
+  width: 28%;
   display: inline-block;
   padding: 15px 20px;
   float:right;
@@ -67,6 +68,7 @@ h1#search_text {
   width: 30%;
   display: inline-block;
   padding-right: 2px;
+  text-align: left;
 }
 .video_container p {
   margin: 10px 0;
@@ -89,6 +91,26 @@ form#main_search textarea{
 }
 form#main_search {
     position: relative;
+}
+form#main_search #submit_button {
+  width: 30%;
+  /*border: 1px solid black;*/
+}
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
 }
 
 /*@keyframes App-logo-spin {

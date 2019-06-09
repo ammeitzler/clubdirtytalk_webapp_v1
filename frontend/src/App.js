@@ -92,7 +92,7 @@ class App extends Component {
     this.search_db(event)
   }
   handleSubmit(event) {
-    alert('A search was submitted: ' + this.state.value);
+    this.setState({value: event.target.value});
     event.preventDefault();
   }
 
@@ -104,11 +104,11 @@ class App extends Component {
             <SearchResults state={this.state}/>
           </div>
           <div id="onethird">
-            <form id="main_search">
+            <form  onSubmit={this.handleSubmit} id="main_search">
               <label>
                 <textarea value={this.state.value} onChange={this.handleChange} autoFocus/>
               </label>
-              <input type="submit" value="Submit" />
+              <input id="submit_button" type="submit" value="search" />
             </form>
           </div>
         <Menu />
