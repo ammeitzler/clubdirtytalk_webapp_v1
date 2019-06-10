@@ -6,7 +6,7 @@ print("production ---------")
 ALLOWED_HOSTS = ['0.0.0.0', '18.224.94.174', '3.18.105.6','18.216.255.48']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DJANGO_DEBUG', True)
+DEBUG = env.bool('DJANGO_DEBUG', False)
 
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='up8ol8l&)5mrqt$8+f3oud6%t%8%=n!wx_+5fh1t0&0l0(jx++')
 

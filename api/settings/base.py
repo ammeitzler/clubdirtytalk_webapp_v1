@@ -75,6 +75,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://18.216.255.48:8000',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 ROOT_URLCONF = 'api.urls'
 
 TEMPLATES = [

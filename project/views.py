@@ -12,16 +12,6 @@ from oauth2_provider.views.generic import ProtectedResourceView
 
 from .tasks import *
 
-# class GroupViewSet(viewsets.ModelViewSet):
-#     queryset = Group.objects.all()
-#     serializer_class = GroupSerializer
-    
-#     def list(self, request):
-#         print("here abc")
-#         x = create_user_task.delay()
-#         print(x)
-#         return Response("hi")
-
 
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
