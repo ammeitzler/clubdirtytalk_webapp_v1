@@ -73,6 +73,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://localhost:8080',
     'http://18.216.255.48:8000',
+    'http://18.191.40.209:8000'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
