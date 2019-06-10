@@ -72,6 +72,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:8000',
     'http://localhost:8080',
+    'http://18.216.255.48:8000',
 ]
 
 ROOT_URLCONF = 'api.urls'

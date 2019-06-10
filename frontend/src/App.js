@@ -1,35 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-// import logo from './logo.svg';
 
-const url = 'http://localhost:8000/article/'
 
-class Menu extends Component {
-  render() {
-    return (
-      <div className="main_menu">
-        <ul>
-          <li>about</li>
-          <li>inspo</li>
-          <li>search</li>
-          <li>about</li>
-          <li>inspo</li>
-          <li>search</li>
-          <li>about</li>
-          <li>inspo</li>
-          <li>search</li>
-          <li>about</li>
-          <li>inspo</li>
-          <li>search</li>
-          <li>about</li>
-          <li>inspo</li>
-          <li>search</li>
-        </ul>
-      </div>
-    );
-  }
-}
-
+const url = 'http://18.216.255.48:8000/article/'
 
 class SearchResults extends Component {
   render() {
@@ -45,16 +17,13 @@ class SearchResults extends Component {
   }
 }
 
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      value:'Convo Club',
+      value:'Club Dirty Talk',
       data:[]
     };
   }
@@ -92,14 +61,13 @@ class App extends Component {
     this.search_db(event)
   }
   handleSubmit(event) {
-    this.setState({value: event.target.value});
+    this.setState({value: this.state.value});
     event.preventDefault();
   }
 
   render() {
     return (
-      <div id="main_content">
-        <Menu />
+      <div id="home_pg">
           <div id="twothird">
             <SearchResults state={this.state}/>
           </div>
@@ -111,15 +79,9 @@ class App extends Component {
               <input id="submit_button" type="submit" value="search" />
             </form>
           </div>
-        <Menu />
       </div>
     );
   }
 }
 
 export default App;
-
-
-
-
-

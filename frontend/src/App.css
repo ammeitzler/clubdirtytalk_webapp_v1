@@ -1,16 +1,22 @@
 html, body {
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 .App {
   text-align: center;
 }
-
-#root, #main_content {
+#root {
   height: 100%;
   min-height: 100%;
+  width:100%;
 }
-
+#home_pg {
+  height: 100%;
+}
+.pg_padding {
+  padding: 0 50px;
+}
 #twothird {
   text-align: center;
   width: 68%;
@@ -52,6 +58,9 @@ h1#search_text {
   bottom:0;
 
 }
+.main_menu:last-child ul {
+  margin-left: -40px; 
+}
 .main_menu ul{
   list-style: none;
   display: flex;
@@ -63,11 +72,15 @@ h1#search_text {
 .main_menu ul li:hover {
   font-style: italic;
 }
+.main_menu ul li a {
+  color: black;
+  text-decoration: none;
+}
 
 .video_container {
   width: 30%;
   display: inline-block;
-  padding-right: 2px;
+  padding-right: 3px;
   text-align: left;
 }
 .video_container p {
@@ -112,12 +125,127 @@ label:focus,
     outline:0px !important;
     -webkit-appearance:none;
 }
+.page_container {
+  width: 65%;
+  max-width: 65%;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
-/*@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+@media (min-width: 1281px) {
+    
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) and (max-width: 1280px) {
+    
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 570px) {
+  html, body {
+    overflow: inherit;
+    overflow-x: hidden;
   }
-  to {
-    transform: rotate(360deg);
+  #twothird {
+    text-align: center;
+    width: 100%;
+    display: block;
+    border-right: none;
+    padding: 10px 20px 80px;
+    overflow-y: scroll;
+    height: 78%;
+    min-height:78%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
   }
-}*/
+  #onethird {
+    width: 100%;
+    display: block;
+    padding: 15px 20px;
+    float:none;
+    height: 16%;
+    border-top: 2px solid black;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  .main_menu {
+  }
+  .main_menu:last-child {
+    display: none;
+  }
+  form#main_search {
+    height: 100%;
+  }
+  form#main_search textarea {
+    font-size: 5vh;
+  }
+  form#main_search #submit_button {
+    border: 1px solid black;
+    height: 25px;
+    background: white;
+    width: 100%;
+  }
+  .video_container {
+    width: 90%;
+    margin-bottom: 25px;
+  }
+  #home_pg {
+    height: 89%;
+  }
+  .pg_padding {
+    padding: 10px 50px;
+  }
+  .page_container{
+    transform: none;
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+  }
+}
