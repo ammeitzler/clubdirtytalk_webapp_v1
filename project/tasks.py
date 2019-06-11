@@ -19,14 +19,10 @@ from celery import shared_task
 from celery.decorators import task
 
 
-@shared_task
-def create_user_task():
-	print("creating user")
-	return 15
-
+""" limit to 50 """
 @task(name="get_all_article")
-def get_all_article(pk):
-	articles = Article.objects.all()
+def get_all_article():
+	articles = Article.objects.all()[:50]
 	serializer = ArticleSerializer(articles, context={'request': None}, many=True)
 	return serializer.data
 

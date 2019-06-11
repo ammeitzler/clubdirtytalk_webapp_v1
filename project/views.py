@@ -50,7 +50,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         return HttpResponse(task_res)
     
     def list(self, request):
-        res = get_all_article.delay(pk)
+        res = get_all_article.delay()
         task_res = res.get()
         
         # x = Article.objects.filter(title__icontains='First Ever').values_list()
