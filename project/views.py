@@ -50,19 +50,19 @@ class ArticleViewSet(viewsets.ModelViewSet):
         return HttpResponse(task_res)
     
     def list(self, request):
-        queryset = Article.objects.all()
-        serializer = ArticleSerializer(queryset, context={'request': None}, many=True)
-        x = Article.objects.filter(title__icontains='First Ever').values_list()
-        found_video_uuid = Transcription.objects.annotate(search=SearchVector('_0seconds_55seconds', '_55seconds_110seconds', '_110seconds_165seconds','_165seconds_220seconds','_220seconds_275seconds', '_275seconds_330seconds','_330seconds_385seconds','_385seconds_440seconds','_440seconds_495seconds','_495seconds_550seconds','_550seconds_605seconds','_605seconds_660seconds','_660seconds_715seconds','_715seconds_770seconds','_770seconds_825seconds','_825seconds_880seconds','_880seconds_935seconds'),).filter(search='loose and limber').values_list('video_uuid', flat=True)
+        res = get_all_article.delay(pk)
+        task_res = res.get()
         
-        vector = SearchVector('_0seconds_55seconds', '_55seconds_110seconds', '_110seconds_165seconds','_165seconds_220seconds','_220seconds_275seconds', '_275seconds_330seconds','_330seconds_385seconds','_385seconds_440seconds','_440seconds_495seconds','_495seconds_550seconds','_550seconds_605seconds','_605seconds_660seconds','_660seconds_715seconds','_715seconds_770seconds','_770seconds_825seconds','_825seconds_880seconds','_880seconds_935seconds')
-        query = SearchQuery('malicious juice')
-        ranked_results = Transcription.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank').values_list('video_uuid', flat=True)
+        # x = Article.objects.filter(title__icontains='First Ever').values_list()
+        # found_video_uuid = Transcription.objects.annotate(search=SearchVector('_0seconds_55seconds', '_55seconds_110seconds', '_110seconds_165seconds','_165seconds_220seconds','_220seconds_275seconds', '_275seconds_330seconds','_330seconds_385seconds','_385seconds_440seconds','_440seconds_495seconds','_495seconds_550seconds','_550seconds_605seconds','_605seconds_660seconds','_660seconds_715seconds','_715seconds_770seconds','_770seconds_825seconds','_825seconds_880seconds','_880seconds_935seconds'),).filter(search='loose and limber').values_list('video_uuid', flat=True)
+        # vector = SearchVector('_0seconds_55seconds', '_55seconds_110seconds', '_110seconds_165seconds','_165seconds_220seconds','_220seconds_275seconds', '_275seconds_330seconds','_330seconds_385seconds','_385seconds_440seconds','_440seconds_495seconds','_495seconds_550seconds','_550seconds_605seconds','_605seconds_660seconds','_660seconds_715seconds','_715seconds_770seconds','_770seconds_825seconds','_825seconds_880seconds','_880seconds_935seconds')
+        # query = SearchQuery('malicious juice')
+        # ranked_results = Transcription.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank').values_list('video_uuid', flat=True)
 
-        print(ranked_results)
+        # print(ranked_results)
         # print(x)
-        print(found_video_uuid)
-        return Response(serializer.data)
+        # print(found_video_uuid)
+        return Response(task_res)
         
 
 

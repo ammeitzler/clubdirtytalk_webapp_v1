@@ -24,6 +24,12 @@ def create_user_task():
 	print("creating user")
 	return 15
 
+@task(name="get_all_article")
+def get_all_article(pk):
+	articles = Article.objects.all()
+    serializer = ArticleSerializer(articles, context={'request': None}, many=True)
+	return serializer.data
+
 @task(name="delete_one_article")
 def delete_one_article(pk):
 	articles = Article.objects.all()
